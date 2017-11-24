@@ -9,7 +9,7 @@ if 'upload' in sys.argv:
 
 setup(
     name='cnamedtuple',
-    version='0.1.5',
+    version='0.1.6',
     description='collections.namedtuple implemented in c.',
     author='Joe Jevnik',
     author_email='joe@quantopian.com',
@@ -30,6 +30,15 @@ setup(
     ],
     url="https://github.com/llllllllll/cnamedtuple",
     ext_modules=[
-        Extension('cnamedtuple._namedtuple', ['cnamedtuple/_namedtuple.c']),
+        Extension(
+            'cnamedtuple._namedtuple',
+            ['cnamedtuple/_namedtuple.c'],
+            extra_compile_args=[
+                '-Wall',
+                '-Wextra',
+                '-Wno-unused-parameter',
+                '-Wno-missing-field-initializers',
+            ],
+        ),
     ],
 )
